@@ -21,12 +21,15 @@ OptionParser.new do |opts|
 end.parse!
 
 root = File.expand_path './public_html'
-server = WEBrick::HTTPServer.new Port: ENV.fetch('PORT') { 8000 }, DocumentRoot: root
+port = ENV.fetch('PORT') { 8000 }
+server = WEBrick::HTTPServer.new Port: port, DocumentRoot: root
 
 trap 'INT' do server.shutdown end
 
 server.mount '/search', Nahled
 
 start = server.method(:start)
+
+Process.setproctitle("ruby #{$PROGRAM_NAME}: jmk data nahled port:#{port}")
 
 options[:daemon] ? WEBrick::Daemon.start(&start) : start.call
