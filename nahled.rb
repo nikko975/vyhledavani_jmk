@@ -48,6 +48,7 @@ class Nahled < WEBrick::HTTPServlet::AbstractServlet
 
     response.status = 200
     response['Content-Type'] = "text/plain, charset=#{ENCODING.name}"
+    response['Content-Disposition'] = 'inline'
     response.body = document
   rescue StandardError
     response.extend(CustomErrorResponse)
