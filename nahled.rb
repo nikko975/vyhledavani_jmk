@@ -20,8 +20,6 @@ class Nahled < WEBrick::HTTPServlet::AbstractServlet
           <HEAD><TITLE>Nastala chyba</TITLE></HEAD>
           <BODY>
             <H1>Nebylo nalezeno ICO: #{ico}</H1>
-            <HR>
-            <P>Custom error page!</P>
           </BODY>
         </HTML>
       HTML
